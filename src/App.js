@@ -21,8 +21,7 @@ function App() {
 
       <div className="app__body">
         <Sidebar />
-      </div>
-      <div>
+
         <Routes>
           <Route path="/mail" element={<Mail />} />
           <Route path="/" element={<EmailList />} />
