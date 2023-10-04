@@ -12,12 +12,28 @@ import {
   Settings,
 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './EmailList.css';
 import EmailRow from './EmailRow';
+import { db } from './firebase';
 import Section from './Section';
 
 function EmailList() {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection('emails')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapshop) =>
+        setEmails(
+          snapshop.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
+
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -54,6 +70,16 @@ function EmailList() {
         <Section Icon={LocalOfferOutlined} title="Promotions" color="green" />
       </div>
       <div className="emaiList__list">
+        {emails.map(({ id, data: { to, subject, message, timestamp } }) => (
+          <EmailRow
+            id={id}
+            key={id}
+            title={to}
+            subject={subject}
+            description={message}
+            timestamp={new Date(timestamp?.seconds * 1000).toUTCString()}
+          />
+        ))}
         <EmailRow
           title="Twich"
           subject="Hey fellow streamer!!!"
