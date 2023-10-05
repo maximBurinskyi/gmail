@@ -1,5 +1,6 @@
 import {
   CheckBox,
+  CheckBoxOutlineBlank,
   LabelImportantOutlined,
   StarBorderOutlined,
 } from '@mui/icons-material';
@@ -29,7 +30,7 @@ function EmailRow({ id, title, subject, description, time }) {
   return (
     <div onClick={openMail} className="emailRow">
       <div className="emailRow__optins">
-        <CheckBox />
+        <CheckBoxOutlineBlank />
         <IconButton>
           <StarBorderOutlined />
         </IconButton>

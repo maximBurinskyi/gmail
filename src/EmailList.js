@@ -1,6 +1,9 @@
 import {
   ArrowDropDown,
+  ArrowDropDownOutlined,
   CheckBox,
+  CheckBoxOutlineBlank,
+  CheckBoxOutlineBlankOutlined,
   ChevronLeftOutlined,
   ChevronRightOutlined,
   Inbox,
@@ -38,7 +41,7 @@ function EmailList() {
     <div className="emailList">
       <div className="emailList__settings">
         <div className="emailList__settingsLeft">
-          <CheckBox />
+          <CheckBoxOutlineBlankOutlined />
           <IconButton>
             <ArrowDropDown />
           </IconButton>
@@ -77,7 +80,7 @@ function EmailList() {
             title={to}
             subject={subject}
             description={message}
-            timestamp={new Date(timestamp?.seconds * 1000).toUTCString()}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
           />
         ))}
         <EmailRow
